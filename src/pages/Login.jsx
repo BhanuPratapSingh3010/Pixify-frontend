@@ -119,7 +119,6 @@ export default function Login() {
               <IconButton variant="soft" color="primary" size="sm">
                 <BadgeRoundedIcon />
               </IconButton>
-              <Typography level="h5">Company Logo</Typography>
             </Box>
             <ColorSchemeToggle />
           </Box>
@@ -155,16 +154,7 @@ export default function Login() {
                   </Link>
                 </Typography>
               </Stack>
-              <Button
-                variant="soft"
-                color="neutral"
-                fullWidth
-                startDecorator={<BadgeRoundedIcon />}
-              >
-                Continue with Google
-              </Button>
             </Stack>
-            <Divider>or</Divider>
             <form onSubmit={handleSubmit}>
               <FormControl required>
                 <FormLabel>Email</FormLabel>
@@ -188,11 +178,6 @@ export default function Login() {
                 Sign in
               </Button>
             </form>
-          </Box>
-          <Box component="footer" sx={{ py: 3 }}>
-            <Typography level="body-xs" sx={{ textAlign: 'center' }}>
-              © Your company {new Date().getFullYear()}
-            </Typography>
           </Box>
         </Box>
       </Box>

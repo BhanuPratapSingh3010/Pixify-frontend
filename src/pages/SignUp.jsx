@@ -17,7 +17,7 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState,useNavigate } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -59,12 +59,15 @@ export default function SignUp() {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
+   let navigate= useNavigate();
   const handleSignUp = async (event) => {
     event.preventDefault();
     try {
       const res = await axios.post('https://pixify-backend-phx3.onrender.com/user/create', formValues);
       toast.success(res.data.message || 'Signed up successfully!'); // Display success message
+      if(res.data.success){
+        navigate('/login')
+      }
     } catch (error) {
       toast.error(error.response?.data?.message || 'Something went wrong.'); // Display error message
     }
@@ -150,14 +153,6 @@ export default function SignUp() {
                   </Link>
                 </Typography>
               </Stack>
-              <Button
-                variant="soft"
-                color="neutral"
-                fullWidth
-                startDecorator={<BadgeRoundedIcon />}
-              >
-                Continue with Google
-              </Button>
             </Stack>
             <Divider>or</Divider>
             <form onSubmit={handleSignUp}>
@@ -211,11 +206,6 @@ export default function SignUp() {
                 SignUp
               </Button>
             </form>
-          </Box>
-          <Box component="footer" sx={{ py: 3 }}>
-            <Typography level="body-xs" sx={{ textAlign: 'center' }}>
-              © Your company {new Date().getFullYear()}
-            </Typography>
           </Box>
         </Box>
       </Box>
